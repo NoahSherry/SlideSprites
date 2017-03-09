@@ -9,13 +9,10 @@ namespace assignment03
 
 		public Program()
 		{
-			
 		}
 
 		protected override void OnKeyDown(KeyEventArgs e)
 		{
-			//base.OnKeyDown(e);
-			Console.WriteLine("asdffasdf");
 			if (e.KeyCode == Keys.Left) rupee.TargetX -= 30;
 			if (e.KeyCode == Keys.Right) rupee.TargetX += 30;
 			if (e.KeyCode == Keys.Up) rupee.TargetY -= 30;
@@ -29,8 +26,8 @@ namespace assignment03
 		[STAThread]
 		static void Main()
 		{
-			rupee.TargetX = 100;
-			rupee.TargetY = 100;
+			rupee.TargetX = 50;
+			rupee.TargetY = 50;
 			rupee.Velocity = 5;
 			Program.parent.Add(rupee);
 			Application.Run(new Program());

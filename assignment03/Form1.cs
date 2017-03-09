@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace assignment03
@@ -15,6 +8,7 @@ namespace assignment03
 	{
 		public static Form form;
 		public static Thread thread;
+		public static Thread thread2;
 		public static int fps = 30;
 		public static double running_fps = 30.0;
 		public static Sprite parent = new Sprite();
@@ -25,16 +19,19 @@ namespace assignment03
 			InitializeComponent();
 			DoubleBuffered = true;
 			form = this;
-			rupee.X = 100;
-			rupee.Y = 100;
+			rupee.X = 50;
+			rupee.Y = 50;
 			thread = new Thread(new ThreadStart(Update));
 			thread.Start();
+			thread2 = new Thread(new ThreadStart(Render));
+			thread2.Start();
 		}
 
 		protected override void OnClosed(EventArgs e)
 		{
 			base.OnClosed(e);
 			thread.Abort();
+			thread2.Abort();
 		}
 
 		public static void Update()
@@ -55,9 +52,28 @@ namespace assignment03
 				form.Invoke(new MethodInvoker(form.Refresh));
 			}
 		}
+
+		public static void Render()
+		{
+			DateTime last = DateTime.Now;
+			DateTime now = last;
+			TimeSpan frameTime = new TimeSpan(10000000 / fps);
+			while (true)
+			{
+				DateTime temp = DateTime.Now;
+				running_fps = .9 * running_fps + .1 * 1000.0 / (temp - now).TotalMilliseconds;
+				Console.WriteLine(running_fps);
+				now = temp;
+				TimeSpan diff = now - last;
+				if (diff.TotalMilliseconds < frameTime.TotalMilliseconds)
+					Thread.Sleep((frameTime - diff).Milliseconds);
+				last = DateTime.Now;
+				rupee.Act();
+			}
+		}
+
 		protected override void OnPaint(PaintEventArgs e)
 		{
-			rupee.Act();
 			rupee.Render(e.Graphics);
 		}
 

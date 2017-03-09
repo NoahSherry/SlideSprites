@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace assignment03
 {
 	public class SlidingSprite : Sprite
 	{
-		private float velocity = 0;
-
 		public int TargetX { get; internal set; }
 		public int TargetY { get; internal set; }
 		public int Velocity { get; internal set; }

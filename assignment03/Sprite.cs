@@ -74,7 +74,6 @@ public class Sprite
 		g.TranslateTransform(x, y);
 		g.ScaleTransform(scale, scale);
 		g.RotateTransform(rotation);
-		//g.TranslateTransform(-x,-y);
 		Paint(g);
 		foreach(Sprite s in children)
 		{
@@ -85,7 +84,6 @@ public class Sprite
 
 	public virtual void Paint(Graphics g)
 	{
-
 	}
 
 	public virtual void Act()
