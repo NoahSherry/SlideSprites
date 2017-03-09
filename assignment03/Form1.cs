@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Windows.Forms;
+using System.Media;
 
 namespace assignment03
 {
@@ -12,10 +13,12 @@ namespace assignment03
 		public static int fps = 30;
 		public static double running_fps = 30.0;
 		public static Sprite parent = new Sprite();
+		public static SoundPlayer song = new SoundPlayer(Properties.Resources.Shop);
 		public static SlidingSprite rupee = new SlidingSprite(assignment03.Properties.Resources.rupee);
 
 		public ChaosEngine()
 		{
+			song.PlayLooping();
 			InitializeComponent();
 			DoubleBuffered = true;
 			form = this;
