@@ -1,6 +1,6 @@
 ﻿namespace assignment03
 {
-	partial class Form1
+	partial class ChaosEngine
 	{
 		/// <summary>
 		/// Required designer variable.
